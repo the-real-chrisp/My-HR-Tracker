@@ -59,3 +59,12 @@ function beginPrompt() {
         });
 };
 
+function viewDepartments() {
+    const action = "SELECT * FROM departments";
+    connection.query(action, (err, res) => {
+        if (err) throw err;
+        console.log(res)
+
+        beginPrompt();
+    });
+};
