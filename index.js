@@ -68,3 +68,14 @@ function viewDepartments() {
         beginPrompt();
     });
 };
+
+function viewRoles() {
+    const action = "SELECT * FROM roles";
+    connection.query(action, (err, res) => {
+        if (err) throw err;
+        console.log(res);
+
+        beginPrompt();
+    });
+};
+
