@@ -63,7 +63,7 @@ function viewDepartments() {
     const action = "SELECT * FROM department";
     connection.query(action, (err, res) => {
         if (err) throw err;
-        console.log(res)
+        console.table(res)
 
         beginPrompt();
     });
@@ -73,9 +73,36 @@ function viewRoles() {
     const action = "SELECT * FROM role";
     connection.query(action, (err, res) => {
         if (err) throw err;
-        console.log(res);
+        console.table(res);
 
         beginPrompt();
     });
 };
 
+function viewEmployees() {
+    const action = "SELECT * FROM employee";
+    connection.query(action, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+
+        beginPrompt();
+    });
+};
+
+function addDepartment() {
+    inquirer
+        .prompt({
+            name: 'department',
+            type: 'input',
+            message: 'What is the name of the department?'
+        })
+        .then((answers) => {
+            const action = `INSERT INTO department (name) VALUES ("${answers.department}")`;
+            connection.query(action, (err, res) => {
+                if (err) throw err;
+                console.table(res)
+
+                beginPrompt();
+            })
+        })
+}
