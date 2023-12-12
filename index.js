@@ -60,7 +60,7 @@ function beginPrompt() {
 };
 
 function viewDepartments() {
-    const action = "SELECT * FROM departments";
+    const action = "SELECT * FROM department";
     connection.query(action, (err, res) => {
         if (err) throw err;
         console.log(res)
@@ -70,7 +70,7 @@ function viewDepartments() {
 };
 
 function viewRoles() {
-    const action = "SELECT * FROM roles";
+    const action = "SELECT * FROM role";
     connection.query(action, (err, res) => {
         if (err) throw err;
         console.log(res);
