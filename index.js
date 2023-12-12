@@ -103,6 +103,44 @@ function addDepartment() {
                 console.table(res)
 
                 beginPrompt();
-            })
-        })
-}
+            });
+        });
+};
+
+function addRole() {
+    inquirer
+        .prompt(
+            {
+                name: "title",
+                type: "input",
+                message: "Title of new role:"
+            },
+            {
+                name: "salary",
+                type: "input",
+                message: "Salary of new role:"
+            },
+            {
+                name: "department",
+                type: "input",
+                message: "Enter department id number:"
+            }
+        )
+        .then((answers) => {
+            const action = "INSERT INTO role SET ?";
+            connection.query(action,
+                {
+                    title: answers.title,
+                    salary: answers.salary,
+                    department: answers.department
+                },
+                (err, res) => {
+                    if (err) throw err;
+                    console.table(res);
+
+                    beginPrompt();
+                }
+                );
+        });
+};
+
