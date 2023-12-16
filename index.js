@@ -170,6 +170,30 @@ function addEmployee() {
             console.table(res);
 
             beginPrompt();
-        })
-    })
-}
+        });
+    });
+};
+
+function updateEmployeeRole() {
+    inquirer
+        .prompt([
+            {
+                name: "employee_id",
+                type: 'input',
+                message: "Please enter employee id number you wish to update:"
+            },
+            {
+                name: "role_id",
+                type: 'input',
+                message: "Please enter new role id number:"
+            }
+        ])
+        .then((answers) => {
+            const action = `UPDATE employee SET role_id = ${answers.role_id} WHERE id = ${answers.employee_id}`;
+            connection.query(action, (err, res) => {
+                if (err) throw err;
+
+                beginPrompt();
+            });
+        });
+};
