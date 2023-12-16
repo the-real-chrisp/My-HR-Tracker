@@ -27,6 +27,10 @@ Step 4: While still in your MySQL shell, run "source seeds.sql" if you wish to s
 Step 5: Quit out of the MySQL shell. 
 Step 6: Run "node index" to start the application. 
 Step 7: Select your desired action.
+
+![Screenshot of Application](./assets/Screenshot%202023-12-15%20175725.png)
+
+[Link to Video](https://drive.google.com/file/d/1NOHJdtPTchcg_baXLbHvQSfpeliyZKk-/view)
     
 ## How to Contribute
 
