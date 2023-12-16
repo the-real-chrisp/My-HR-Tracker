@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "",
+    password: "root",
     database: "employees_db"
 });
 
@@ -109,7 +109,7 @@ function addDepartment() {
 
 function addRole() {
     inquirer
-        .prompt(
+        .prompt([
             {
                 name: "title",
                 type: "input",
@@ -123,24 +123,21 @@ function addRole() {
             {
                 name: "department",
                 type: "input",
-                message: "Enter department id number:"
+                message: "Enter department number:"
             }
-        )
+        ])
         .then((answers) => {
-            const action = "INSERT INTO role SET ?";
-            connection.query(action,
-                {
-                    title: answers.title,
-                    salary: answers.salary,
-                    department: answers.department
-                },
-                (err, res) => {
-                    if (err) throw err;
-                    console.table(res);
+            const action = `INSERT INTO role (title, salary, department_id) VALUES ("${answers.title}", ${answers.salary}, ${answers.department})`;
+            connection.query(action, (err, res) => {
+                if (err) throw err;
+                console.table(res);
 
-                    beginPrompt();
-                }
-                );
+                beginPrompt();
+            }
+            );
         });
 };
 
+// function addEmployee() {
+
+// }
