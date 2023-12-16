@@ -138,6 +138,38 @@ function addRole() {
         });
 };
 
-// function addEmployee() {
+function addEmployee() {
+    inquirer
+    .prompt([
+        {
+            name: "first_name",
+            type: "input",
+            message: "Please enter employee's first name:"
+        },
+        {
+            name: "last_name",
+            type: "input",
+            message: "Please enter employee's last name:"
+        },
+        {
+            name: "role_id",
+            type: "input",
+            message: "Please enter role id number:"
+        },
+        {
+            name: "manager_id",
+            type: "input",
+            message: "Please enter manager id number:"
+        }
+    ])
+    .then((answers) => {
+        const action = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${answers.first_name}", "${answers.last_name}", "${answers.role_id}", "${answers.manager_id}")`;
+        connection.query(action, (err, res) => {
+            if (err) throw err;
 
-// }
+            console.table(res);
+
+            beginPrompt();
+        })
+    })
+}
